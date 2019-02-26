@@ -178,6 +178,12 @@ function handleToggleStart(){
 
 function handleAnswerSelection(){
   $('main').on('click', '.list-group-item', (event) => {
+    
+    const target = $(event.currentTarget);
+    const otherLinks = $('.list-group-item').not(target);
+    otherLinks.removeClass('active')
+    target.addClass('active'); // This is your rel value
+    
     return $(event.currentTarget).val();
   });
 }
