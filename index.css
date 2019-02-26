@@ -30,11 +30,9 @@ main .row {
 }
 
 .box {
-  height: 200px;
+  height: 400px;
   padding-top: 30px;
 }
-
-
 
 /* Clearfix */
 .row::before,
@@ -60,21 +58,28 @@ main .row {
   padding-right: 1.04166666%;
 }
 
+
+
 /* Mobile defaults */
 .col-3, .col-4, .col-6, .col-12 {
   width: 100%;
 }
 
+/* .ignore-on-mobile {
+  visibility: hidden;
+  display: none !important;
+} */
 
 /* Non-mobile, grid */
 @media only screen and (min-width: 640px) {
   /* 3 columns, 3/12 in % */
   .col-3 {
-    width: 33.333333%;
+    width: 25%;
   }
 
   /* 4 columns */
   .col-4 {
+    width: 33.333333%;
   }
 
   /* 6 columns */
@@ -85,6 +90,7 @@ main .row {
   /* 12 columns */
   .col-12 {
   }
+
 }
 
 .black {
