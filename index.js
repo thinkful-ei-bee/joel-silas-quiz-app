@@ -28,26 +28,6 @@ Display the results.
 Optionally restart the game
 */
 
-function renderStartPage(){
-  
-}
-
-function renderQuestionPage(){
-  $('#js-quiz-starter').click(function(){
-    
-    console.log('Start Quiz Button Pushed');
-    $('.container').html(newQuestionTemplate());
-  });
-}
-
-function renderResultPage(){
-
-}
-
-function handleUserAnswer(){
-
-}
-
 function newQuestionTemplate(){
   return `<div class="mb-1 bg-primary d-inline-block"></div>
     
@@ -97,11 +77,19 @@ function newQuestionTemplate(){
     </div>`;
 }
 
-function handleToggleStart(){
+function render(template){
+  $('.container').html(template);
+}
 
+function handleToggleStart(){
+  $('#js-quiz-starter').click(function(){
+    console.log('Start Quiz Button Pushed');
+    render(newQuestionTemplate());
+  });
 }
 
 function main(){
+  handleToggleStart();
   renderStartPage();
   renderQuestionPage();
   renderResultPage();
