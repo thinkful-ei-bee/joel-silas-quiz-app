@@ -115,8 +115,8 @@ function newQuestionTemplate(array){
     
             <div class="form-row text-center">
               <div class="col-12">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="submit" class="btn btn-primary">Star Over</button>
+                <button type="submit" class="btn btn-primary js-submit-button">Submit</button>
+                <button type="submit" class="btn btn-primary js-start-over-button">Star Over</button>
               </div>
             </div>
           </form>
@@ -128,6 +128,27 @@ function newQuestionTemplate(array){
         </div>
       </div>
       <div class="col-sm-2"></div>
+    </div>`;
+}
+
+function newResultPageTemplate(){
+  return `
+   <div class="row">
+      <div class="col-4">
+        <div class="box"></div>
+      </div>
+      <div class="col-4">
+        <div class="box blue">
+            <h1>Result</h1>
+            <div class="answer-result">Placeholer Text: Here's the real answer.</div>
+            <form id="js-results" action="get">
+                <button type="submit" for="js-results" value="Submit">Submit</button>
+            </form>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="box"></div>
+      </div>
     </div>`;
 }
 
@@ -157,13 +178,20 @@ function handleToggleStart(){
 
 function handleAnswerSelection(){
   $('main').on('click', '.list-group-item', (event) => {
-    console.log(event.currentTarget);
+    return $(event.currentTarget).val();
+  });
+}
+
+function handleAnswerSubmission(){
+  $('main').on('click', '.js-submit-button', (event) => {
+    console.log('you submitted something');
   });
 }
 
 function main(){
   handleToggleStart();
   handleAnswerSelection();
+  handleAnswerSubmission();
   // renderResultPage();
   // handleUserAnswer();
 }
