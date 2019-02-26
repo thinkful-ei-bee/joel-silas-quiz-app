@@ -14,6 +14,14 @@
  *   so 960 + 20 + 20 => 1000px
  *
  **/
+ main {
+  padding-top: 100px;
+  margin: auto;
+}
+
+main .row {
+  margin-bottom: 20px;
+}
 .row {
   max-width: 1000px;
   padding-left: 20px;
@@ -76,4 +84,21 @@
   /* 12 columns */
   .col-12 {
   }
+}
+
+.black {
+  background-color: black;
+  color: white;
+}
+
+.green {
+  background-color: green;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.blue {
+  background-color: blue;
 }
