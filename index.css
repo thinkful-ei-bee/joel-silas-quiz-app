@@ -31,9 +31,10 @@ main .row {
 
 .box {
   height: 200px;
-  text-align: center;
   padding-top: 30px;
 }
+
+
 
 /* Clearfix */
 .row::before,
