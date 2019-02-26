@@ -2,6 +2,7 @@
 
 const STORE = {
   currentQuestion: 0,
+  currentAnswer: '',
   userAnswers: [],
   currentView: 'start',
 };
@@ -183,14 +184,15 @@ function handleAnswerSelection(){
     const otherLinks = $('.list-group-item').not(target);
     otherLinks.removeClass('active')
     target.addClass('active'); // This is your rel value
-    
-    return $(event.currentTarget).val();
+    STORE.currentAnswer = target.val();
+    console.log(STORE.currentAnswer);
   });
 }
 
 function handleAnswerSubmission(){
   $('main').on('click', '.js-submit-button', (event) => {
     console.log('you submitted something');
+    STORE.userAnswers.push({questionNumber: QUESTION[STORE.currentQuestion], userAnswer: STORE.currentAnswer });
   });
 }
 
