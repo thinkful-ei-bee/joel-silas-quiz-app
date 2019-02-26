@@ -33,8 +33,8 @@ function renderStartPage(){
 }
 
 function renderQuestionPage(){
-  $('.container').click(function(event){
-    event.preventDefault();
+  $('#js-quiz-starter').click(function(){
+    
     console.log('Start Quiz Button Pushed');
     $('.container').html(newQuestionTemplate());
   });
@@ -95,6 +95,10 @@ function newQuestionTemplate(){
       </div>
       <div class="col-sm-2"></div>
     </div>`;
+}
+
+function handleToggleStart(){
+
 }
 
 function main(){
