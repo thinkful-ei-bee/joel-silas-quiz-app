@@ -20,16 +20,32 @@
             <p class="card-text" id="main-title-subtext">
             <!-- Placeholder text -->
             </p>
-            <h4 class="card-title text-center">Shall We Play A Game?</h4>
+            <h4 class="card-title text-center">What is your favorite color?</h4>
             
             <form>
               <div class="form-group">
-                
+                <!-- https://getbootstrap.com/docs/4.3/components/list-group/ -->
+                <div class="list-group">
+                  <a href="#" class="list-group-item list-group-item-action active">Answer 1</a>
+                  <a href="#" class="list-group-item list-group-item-action">Answer 2</a>
+                  <a href="#" class="list-group-item list-group-item-action">Answer 3</a>
+                  <a href="#" class="list-group-item list-group-item-action">Answer 4</a>
+                </dib>
+              </div>
+
+              <div class="form-group">
+                <div class="list-group">
+                  <ul class="list-inline">
+                    <li>Question: 1/5</li>
+                    <li>Correct Answers: 0/5</li>
+                  </ul>
+                </div>
               </div>
 
               <div class="form-row text-center">
                 <div class="col-12">
-                  <button type="submit" class="btn btn-primary" id="js-quiz-starter">Start Quiz</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Star Over</button>
                 </div>
               </div>
             </form>
