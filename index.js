@@ -187,7 +187,9 @@ function handleAnswerSelection(){
     console.log(STORE.currentAnswer);
   });
 }
-
+function test(){
+  
+}
 function handleAnswerSubmission(){
   $('main').on('click', '.js-submit-button', (event) => {
     console.log('you submitted something');
