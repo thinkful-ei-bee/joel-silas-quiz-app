@@ -32,37 +32,37 @@ const QUESTIONS = [
     anwerTrivia: 'Madonna became known as "The Material Girl" after her hit single of the same name hit the charts in 1984. She hates it, claiming she would never have done the song if she knew the name would stick.',
   },
   {question: 'What Depeche Mode song was inspired by Priscilla Presley\'s book Elvis and Me?', 
-  answer: 'Personal Jesus',
-  answers: [
-    'Sweetest Perfection', 
-    'Strangelove',
-    'World In My Eyes',
-    'Personal Jesus',
-    '1984',
-  ],
-  answerTrivia: '"Personal Jesus" was inspired by Priscilla Presley\'s book Elvis And Me, in which she describes her relationship with Elvis Presley.',
+    answer: 'Personal Jesus',
+    answers: [
+      'Sweetest Perfection', 
+      'Strangelove',
+      'World In My Eyes',
+      'Personal Jesus',
+      '1984',
+    ],
+    answerTrivia: '"Personal Jesus" was inspired by Priscilla Presley\'s book Elvis And Me, in which she describes her relationship with Elvis Presley.',
   },
   {question: 'How much pressure do the strings in a grand piano exert on the frame?', 
-  answer: '30 LBS',
-  answers: [
-    '300 LBS', 
-    '3 Tons',
-    '30 Tons',
-    '30 LBs',
-    '800,000 Kilometers',
-  ],
-  answerTrivia: 'Each string has a tension of 160-200 lbs, resulting in a total combined force of up to 30 tons in a concert grand.',
+    answer: '30 LBS',
+    answers: [
+      '300 LBS', 
+      '3 Tons',
+      '30 Tons',
+      '30 LBs',
+      '800,000 Kilometers',
+    ],
+    answerTrivia: 'Each string has a tension of 160-200 lbs, resulting in a total combined force of up to 30 tons in a concert grand.',
   },
   {question: 'What is the oldest surviving musical instrument?', 
-  answer: 'Flute',
-  answers: [
-    'Trumpet', 
-    'Drum',
-    'Flute',
-    'Lyre',
-    'Bongo',
-  ],
-  answerTrivia: 'An ancient bone flute, estimated to be about 43,000-82,000 years old, was found by Dr Ivan Turk, a palaeontologist at the Slovenian Academy of Science at a Neanderthal campsite in Ljubljana, Slovenia, in 1998. The oldest known musical instrument, it is made of an old cavebear femur segment with four holes (two complete and two partial).',
+    answer: 'Flute',
+    answers: [
+      'Trumpet', 
+      'Drum',
+      'Flute',
+      'Lyre',
+      'Bongo',
+    ],
+    answerTrivia: 'An ancient bone flute, estimated to be about 43,000-82,000 years old, was found by Dr Ivan Turk, a palaeontologist at the Slovenian Academy of Science at a Neanderthal campsite in Ljubljana, Slovenia, in 1998. The oldest known musical instrument, it is made of an old cavebear femur segment with four holes (two complete and two partial).',
   }
 ];
 
@@ -131,8 +131,6 @@ function newQuestionTemplate(array){
     </div>`;
 }
 
-
-
 function getScore() {
   return 'Correct Answers: 0 of 5';
 }
@@ -157,8 +155,15 @@ function handleToggleStart(){
   });
 }
 
+function handleAnswerSelection(){
+  $('main').on('click', '.list-group-item', (event) => {
+    console.log(event.currentTarget);
+  });
+}
+
 function main(){
   handleToggleStart();
+  handleAnswerSelection();
   // renderResultPage();
   // handleUserAnswer();
 }
