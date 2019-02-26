@@ -79,46 +79,49 @@ Display the results.
 Optionally restart the game
 */
 
-function questionTemplate(){
+function newQuestionTemplate(array){
   return `<div class="mb-1 bg-primary d-inline-block"></div>
     
     <div class="row">
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
         <div class="card">
+
           <div class="card-body">
-            <p class="card-text" id="main-title-subtext">
-            <!-- Placeholder text -->
-            </p>
-            <h4 class="card-title text-center">PLACEHOLDEDR</h4>
-            
-            <form>
-              <div class="form-group">
-                <!-- https://getbootstrap.com/docs/4.3/components/list-group/ -->
-                <div class="list-group">
-                  <a href="#" class="list-group-item list-group-item-action active">Answer 1</a>
-                  <a href="#" class="list-group-item list-group-item-action">Answer 2</a>
-                  <a href="#" class="list-group-item list-group-item-action">Answer 3</a>
-                  <a href="#" class="list-group-item list-group-item-action">Answer 4</a>
-                </dib>
+          <p class="card-text" id="main-title-subtext">
+          <!-- Placeholder text -->
+          </p>
+          <h4 class="card-title text-center">${array[0].question}</h4>
+          
+          <form>
+            <div class="form-group">
+              <!-- https://getbootstrap.com/docs/4.3/components/list-group/ -->
+              <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action active">${array[0].answers[0]}</a>
+                <a href="#" class="list-group-item list-group-item-action">${array[1].answers[0]}</a>
+                <a href="#" class="list-group-item list-group-item-action">${array[2].answers[0]}</a>
+                <a href="#" class="list-group-item list-group-item-action">${array[3].answers[0]}</a>
+              </dib>
+            </div>
+    
+            <div class="form-group">
+              <div class="list-group">
+                <ul class="list-inline">
+                  <li>${STORE.currentQuestion} of ${array.length}</li>
+                  <li>${getScore()}</li>
+                </ul>
               </div>
-
-              <div class="form-group">
-                <div class="list-group">
-                  <ul class="list-inline">
-                    <li>Question: 1/5</li>
-                    <li>Correct Answers: 0/5</li>
-                  </ul>
-                </div>
+            </div>
+    
+            <div class="form-row text-center">
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Star Over</button>
               </div>
-
-              <div class="form-row text-center">
-                <div class="col-12">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                  <button type="submit" class="btn btn-primary">Star Over</button>
-                </div>
-              </div>
-            </form>
+            </div>
+          </form>
+    
+          </div>
 
           </div>
         </div>
@@ -128,53 +131,19 @@ function questionTemplate(){
     </div>`;
 }
 
-function newQuestionTemplate(object){
 
-  return `
-    <div class="card-body">
-      <p class="card-text" id="main-title-subtext">
-      <!-- Placeholder text -->
-      </p>
-      <h4 class="card-title text-center">${object.question}</h4>
-      
-      <form>
-        <div class="form-group">
-          <!-- https://getbootstrap.com/docs/4.3/components/list-group/ -->
-          <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active">Answer 1</a>
-            <a href="#" class="list-group-item list-group-item-action">Answer 2</a>
-            <a href="#" class="list-group-item list-group-item-action">Answer 3</a>
-            <a href="#" class="list-group-item list-group-item-action">Answer 4</a>
-          </dib>
-        </div>
 
-        <div class="form-group">
-          <div class="list-group">
-            <ul class="list-inline">
-              <li>Question: 1/5</li>
-              <li>Correct Answers: 0/5</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="form-row text-center">
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="submit" class="btn btn-primary">Star Over</button>
-          </div>
-        </div>
-      </form>
-
-    </div>
- `
+function getScore() {
+  return 'Correct Answers: 0 of 5';
 }
 
 function randomizeArray(array){
-  return array.forEach((val, key) => {
-    randomIndex = Math.ceil(Math.random()*(key + 1));
+  let returnArray =  array.forEach((val, key) => {
+    let randomIndex = Math.ceil(Math.random()*(key + 1));
     array[key] = array[randomIndex];
     array[randomIndex] = val;
   });
+  return returnArray;
 }
 
 function render(template){
@@ -184,9 +153,7 @@ function render(template){
 function handleToggleStart(){
   $('#js-quiz-starter').click(function(){
     console.log('Start Quiz Button Pushed');
-    let test = randomizeArray(QUESTIONS);
-    console.log(test[0]);
-    render(questionTemplate());
+    render(newQuestionTemplate(QUESTIONS));
   });
 }
 
