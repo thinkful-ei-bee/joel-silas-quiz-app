@@ -2,6 +2,10 @@
 
 body {
   background-image: url('001.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 * {
