@@ -332,18 +332,42 @@ function handleAnswerSelection(){
   });
 }
 
-function handleAnswerSubmission(){
+// function handleAnswerSubmission(){
+//   $('main').on('click', '.js-submit-button', (event) => {
+//     STORE.userAnswers.push({questionNumber: STORE.currentQuestion, userAnswer: STORE.currentAnswer });
+//     console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
+//     // Flip result to opposite to show or not show results after each question
+//     if(STORE.currentView === 'quiz'){
+//       STORE.currentQuestion++;
+//       console.log(`STORE.currentQuestion itterated by 1 and is now: ${STORE.currentQuestion}`);
+//     }
+//     STORE.currentView = 'result';
+//     //helperForQuestionView();
+//     render();
+//   });
+// }
+
+function handleAnswerSubmission() {
   $('main').on('click', '.js-submit-button', (event) => {
     STORE.userAnswers.push({questionNumber: STORE.currentQuestion, userAnswer: STORE.currentAnswer });
     console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
-    // Flip result to opposite to show or not show results after each question
-    if(STORE.currentView === 'quiz'){
+  
+    if(STORE.currentView === 'quiz') {
+      console.log('Change view from quiz to result');
+      STORE.currentView = 'result';
       STORE.currentQuestion++;
       console.log(`STORE.currentQuestion itterated by 1 and is now: ${STORE.currentQuestion}`);
+      render();
+      return;
     }
-    STORE.currentView = 'result';
-    //helperForQuestionView();
-    render();
+
+    if(STORE.currentView === 'result') {
+      console.log('Change view from result to quiz');
+      STORE.currentView = 'quiz';
+      render();
+      return;
+    }
+
   });
 }
 
