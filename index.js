@@ -167,6 +167,7 @@ function newQuestionTemplate() {
 }
 
 function newResultPageTemplate() {
+  STORE.currentAnswer = '';
   return `
   <div class="mb-1 bg-primary d-inline-block"></div>
   
