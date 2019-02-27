@@ -205,10 +205,18 @@ function handleAnswerSelection(){
   });
 }
 
+function logArray(array){
+  for (let i = 0; i < array.length; i++) {
+    console.log(array[i]);
+  }
+}
+
 function handleAnswerSubmission(){
   $('main').on('click', '.js-submit-button', (event) => {
     console.log('you submitted something');
-    STORE.userAnswers.push({questionNumber: QUESTION[STORE.currentQuestion], userAnswer: STORE.currentAnswer });
+    STORE.userAnswers.push({questionNumber: STORE.currentQuestion, userAnswer: STORE.currentAnswer });
+    console.log(`Test log, STORE.userAnswers updated:`);
+    logArray(STORE.userAnswers);
   });
 }
 
