@@ -213,10 +213,8 @@ function logArray(array){
 
 function handleAnswerSubmission(){
   $('main').on('click', '.js-submit-button', (event) => {
-    console.log('you submitted something');
     STORE.userAnswers.push({questionNumber: STORE.currentQuestion, userAnswer: STORE.currentAnswer });
-    console.log(`Test log, STORE.userAnswers updated:`);
-    logArray(STORE.userAnswers);
+    console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
   });
 }
 
