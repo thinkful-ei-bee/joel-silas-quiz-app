@@ -332,8 +332,7 @@ function handleAnswerSelection(){
 
 function handleAnswerSubmission() {
   $('main').on('click', '.js-submit-button', (event) => {
-    
-    //console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
+    event.preventDefault();
   
     if(STORE.currentView === 'quiz') {
       STORE.userAnswers.push({
@@ -345,6 +344,10 @@ function handleAnswerSubmission() {
       STORE.currentView = 'result';
       STORE.currentQuestion++;
       console.log(`STORE.currentQuestion itterated by 1 and is now: ${STORE.currentQuestion}`);
+      if(STORE.userAnswers[STORE.currentQuestion] === undefined){
+        alert('User must select an answer!!!');
+        return;
+      }
       render();
       return;
     }
