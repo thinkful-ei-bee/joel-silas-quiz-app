@@ -82,8 +82,8 @@ Optionally restart the game
 */
 
 function newStartPageTemplate() {
-  <div class="mb-1 bg-primary d-inline-block"></div>
-    return `<div class="row">
+  return `<div class="row">
+    <div class="mb-1 bg-primary d-inline-block"></div>
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
         <div class="card">
