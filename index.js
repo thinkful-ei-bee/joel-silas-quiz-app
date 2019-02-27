@@ -212,7 +212,7 @@ function newResultPageTemplate() {
           <div class="form-row text-center">
             <div class="col-12">
               <button type="submit" class="btn btn-primary js-submit-button">Next</button>
-              <button type="submit" class="btn btn-primary js-start-over-button">Star Over</button>
+              <button type="submit" class="btn btn-primary js-start-over-button">Start Over</button>
             </div>
           </div>
         </form>
@@ -229,23 +229,45 @@ function newResultPageTemplate() {
 
 function newFinalResultPageTemplate() {
   return `
-   <div class="row">
-      <div class="col-4">
-        <div class="box"></div>
-      </div>
-      <div class="col-4">
-        <div class="box blue">
-            <h1>Result</h1>
-            <div class="answer-result">Placeholer Text: Here's the real answer.</div>
-            <form id="js-results" action="get">
-                <button type="submit" for="js-results" value="Submit">Submit</button>
-            </form>
+  <div class="mb-1 bg-primary d-inline-block"></div>
+  
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <div class="card">
+
+        <div class="card-body">
+        <p class="card-text" id="main-title-subtext">
+        <!-- Placeholder text -->
+        </p>
+        <h4 class="card-title text-center">Score</h4>
+        
+        <form>
+  
+          <div class="form-group">
+            <div class="list-group">
+              <ul class="list-inline">
+                <li></li>
+                <li>Your score ${STORE.score} of a possible${QUESTIONS.length}</li>
+              </ul>
+            </div>
+          </div>
+  
+          <div class="form-row text-center">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary js-start-over-button">Play Again!</button>
+            </div>
+          </div>
+        </form>
+  
+        </div>
+
         </div>
       </div>
-      <div class="col-4">
-        <div class="box"></div>
       </div>
-    </div>`;
+    </div>
+    <div class="col-sm-2"></div>
+  </div>`;
 }
 
 function getScore() {
@@ -307,6 +329,10 @@ function render(){ // should only read from store
     return;
   }
 
+  if(STORE.currentView === 'final') {
+    $('.container').html(newFinalResultPageTemplate());
+  }
+
 }
 
 //should only write from STORE not right read
@@ -333,6 +359,17 @@ function handleAnswerSelection(){
 function handleAnswerSubmission() {
   $('main').on('click', '.js-submit-button', (event) => {
     event.preventDefault();
+
+    if(STORE.currentQuestion + 1 === QUESTIONS.length){
+      STORE.currentView = 'final';
+      render();
+      return;
+    }
+
+    if(STORE.currentView === 'quiz' && STORE.currentAnswer === ''){
+      console.log('User must select an answer!!!');
+      return;
+    }
   
     if(STORE.currentView === 'quiz') {
       STORE.userAnswers.push({
@@ -344,10 +381,7 @@ function handleAnswerSubmission() {
       STORE.currentView = 'result';
       STORE.currentQuestion++;
       console.log(`STORE.currentQuestion itterated by 1 and is now: ${STORE.currentQuestion}`);
-      if(STORE.userAnswers[STORE.currentQuestion] === undefined){
-        alert('User must select an answer!!!');
-        return;
-      }
+      
       render();
       return;
     }
