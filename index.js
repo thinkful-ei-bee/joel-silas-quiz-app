@@ -360,7 +360,7 @@ function handleAnswerSubmission() {
   $('main').on('click', '.js-submit-button', (event) => {
     event.preventDefault();
 
-    if(STORE.currentQuestion + 1 === QUESTIONS.length){
+    if(STORE.currentQuestion === QUESTIONS.length){
       STORE.currentView = 'final';
       render();
       return;
