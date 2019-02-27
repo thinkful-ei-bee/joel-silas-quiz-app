@@ -168,7 +168,10 @@ function newQuestionTemplate() {
 }
 
 function newResultPageTemplate() {
+
   STORE.currentAnswer = '';
+  let templateCorrectAnswer = QUESTIONS[STORE.currentQuestion - 1].answer.substring(QUESTIONS[STORE.currentQuestion-1].answer.length - 1, QUESTIONS[STORE.currentQuestion-1].answer.length);
+  let templateDisplayAnswer = QUESTIONS[STORE.currentQuestion - 1].answers[templateCorrectAnswer];
   return `
   <div class="mb-1 bg-primary d-inline-block"></div>
   
@@ -189,7 +192,7 @@ function newResultPageTemplate() {
             <div class="list-group">
               <ul class="list-inline">
                 <li>You answered: {STORE.userAnswers[STORE.currentQuestion].userAnswer}</li>
-                <li>Correct answer: ${QUESTIONS[STORE.currentQuestion-1].answer}</li>
+                <li>Correct answer: ${templateDisplayAnswer}</li>
               </ul>
             </div>
           </div>
