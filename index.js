@@ -111,7 +111,7 @@ function newStartPageTemplate() {
       </div>
       <div class="col-sm-2"></div>
     </div>
-    `
+    `;
 }
 
 function newQuestionTemplate() {
