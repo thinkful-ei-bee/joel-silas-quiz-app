@@ -6,7 +6,6 @@ const STORE = {
   currentAnswer: '',
   userAnswers: [],
   currentView: 'start',
-  showQuestionResult: false,
 };
 
 // https://www.usefultrivia.com/music_trivia/
@@ -305,6 +304,7 @@ function render(){ // should only read from store
 
   if(STORE.currentView === 'result') {
     $('.container').html(newResultPageTemplate());
+    return;
   }
 
 }
@@ -324,7 +324,7 @@ function helperForQuestionView(){ //follow same rules as render
 
 //should only write from STORE not right read
 function handleToggleStart(){
-  $('#js-quiz-starter').click(function(){
+  $('main').on('click', '#js-quiz-starter', function(event){
     // we are passing this locally when it is globally available, thoughts?
     STORE.currentView = 'quiz';
     render();
@@ -372,6 +372,17 @@ function handleAnswerSubmission() {
   });
 }
 
+function handleStartOverSubmssion(){
+  $('main').on('click', '.js-start-over-button', (event) =>{
+    STORE.score = 0;
+    STORE.currentQuestion = 0;
+    STORE.currentAnswer = '';
+    STORE.userAnswers = [];
+    STORE.currentView = 'start';
+    render();
+  });
+}
+
 function main(){
   // Randomize QUESTIONS at start
   //randomizeArray(QUESTIONS);
@@ -381,6 +392,7 @@ function main(){
   handleToggleStart();
   handleAnswerSelection();
   handleAnswerSubmission();
+  handleStartOverSubmssion();
   // renderResultPage();
   // handleUserAnswer();
 }
