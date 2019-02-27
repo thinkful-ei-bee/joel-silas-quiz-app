@@ -135,6 +135,63 @@ function newQuestionTemplate(){
 
 function newResultPageTemplate(){
   return `
+  <div class="mb-1 bg-primary d-inline-block"></div>
+  
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <div class="card">
+
+        <div class="card-body">
+        <p class="card-text" id="main-title-subtext">
+        <!-- Placeholder text -->
+        </p>
+        <h4 class="card-title text-center">${QUESTIONS[STORE.currentQuestion].question}</h4>
+        
+        <form>
+          <div class="form-group">
+            
+            <div class="answer-result">Placeholer Text: Here's the real answer.</div>
+          </div>
+
+          <div class="form-group">
+            <div class="list-group">
+              <ul class="list-inline">
+                <li>You answered: {STORE.userAnswers[STORE.currentQuestion].userAnswer}</li>
+                <li>Correct answer: ${QUESTIONS[STORE.currentQuestion].answer}</li>
+              </ul>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <div class="list-group">
+              <ul class="list-inline">
+                <li>${STORE.currentQuestion + 1} of ${QUESTIONS.length}</li>
+                <li>${getScore()}</li>
+              </ul>
+            </div>
+          </div>
+  
+          <div class="form-row text-center">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary js-submit-button">Next</button>
+              <button type="submit" class="btn btn-primary js-start-over-button">Star Over</button>
+            </div>
+          </div>
+        </form>
+  
+        </div>
+
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>`;
+}
+
+function newFinalResultPageTemplate(){
+  return `
    <div class="row">
       <div class="col-4">
         <div class="box"></div>
