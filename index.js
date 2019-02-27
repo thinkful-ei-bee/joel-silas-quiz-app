@@ -338,8 +338,10 @@ function handleAnswerSubmission(){
     console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
     // Flip result to opposite to show or not show results after each question
     STORE.currentView = 'result';
-    STORE.currentQuestion += 1;
-    console.log(`STORE.currentQuestion itterated by 1 and is now: ${STORE.currentQuestion}`);
+    if(STORE.currentView === 'quiz'){
+      STORE.currentQuestion += 1;
+      console.log(`STORE.currentQuestion itterated by 1 and is now: ${STORE.currentQuestion}`);
+    }
     //helperForQuestionView();
     render();
   });
