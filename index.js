@@ -159,7 +159,7 @@ function getScore() {
 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function randomizeArray(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+  let currentIndex = array.length, temporaryValue, randomIndex;
 
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
@@ -175,6 +175,12 @@ function randomizeArray(array) {
   }
 
   return array;
+}
+
+function randomizeQuestionAnswers(array){
+  array.forEach(element => {
+    randomizeArray(element.answers);
+  });
 }
 
 function render(template){
@@ -207,8 +213,10 @@ function handleAnswerSubmission(){
 }
 
 function main(){
-  // Randomize questions at start
+  // Randomize QUESTIONS at start
   randomizeArray(QUESTIONS);
+  // Randomize QUESTIONS answers at start
+  randomizeQuestionAnswers(QUESTIONS);
   handleToggleStart();
   handleAnswerSelection();
   handleAnswerSubmission();
