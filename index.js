@@ -5,7 +5,7 @@ const STORE = {
   currentAnswer: '',
   userAnswers: [],
   currentView: 'start',
-  showQuestionResult: false;
+  showQuestionResult: false,
 };
 
 // https://www.usefultrivia.com/music_trivia/
@@ -81,7 +81,7 @@ Display the results.
 Optionally restart the game
 */
 
-function newQuestionTemplate(array){
+function newQuestionTemplate(){
   return `<div class="mb-1 bg-primary d-inline-block"></div>
     
     <div class="row">
@@ -93,23 +93,23 @@ function newQuestionTemplate(array){
           <p class="card-text" id="main-title-subtext">
           <!-- Placeholder text -->
           </p>
-          <h4 class="card-title text-center">${array[0].question}</h4>
+          <h4 class="card-title text-center">${QUESTIONS[STORE.currentQuestion].question}</h4>
           
           <form>
             <div class="form-group">
               <!-- https://getbootstrap.com/docs/4.3/components/list-group/ -->
               <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">${array[0].answers[0]}</a>
-                <a href="#" class="list-group-item list-group-item-action">${array[0].answers[1]}</a>
-                <a href="#" class="list-group-item list-group-item-action">${array[0].answers[2]}</a>
-                <a href="#" class="list-group-item list-group-item-action">${array[0].answers[3]}</a>
+                <a href="#" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[0]}</a>
+                <a href="#" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[1]}</a>
+                <a href="#" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[2]}</a>
+                <a href="#" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[3]}</a>
               </dib>
             </div>
     
             <div class="form-group">
               <div class="list-group">
                 <ul class="list-inline">
-                  <li>${STORE.currentQuestion} of ${array.length}</li>
+                  <li>${STORE.currentQuestion + 1} of ${QUESTIONS.length}</li>
                   <li>${getScore()}</li>
                 </ul>
               </div>
@@ -188,10 +188,23 @@ function render(template){
   $('.container').html(template);
 }
 
+function handleQuestionView(){
+  console.log(`handleQuestionView(): actual STORE.showQuestionResult: ${STORE.showQuestionResult}`);
+  // if showQuestionResult is true display question/answer result
+  if(STORE.showQuestionResult === true) {
+    console.log(`handleQuestionView(): STORE.showQuestionResult is true, render result view`);
+    render(newResultPageTemplate());
+  } else {
+    console.log(`handleQuestionView(): STORE.showQuestionResult is false, render result view`);
+    render(newQuestionTemplate());
+  }
+}
+
 function handleToggleStart(){
   $('#js-quiz-starter').click(function(){
     console.log('Start Quiz Button Pushed');
-    render(newQuestionTemplate(QUESTIONS));
+    // we are passing this locally when it is globally available, thoughts?
+    render(newQuestionTemplate());
   });
 }
 
@@ -203,6 +216,7 @@ function handleAnswerSelection(){
     targetAnswer.addClass('active'); // This is your rel value
     STORE.currentAnswer = targetAnswer[0].innerHTML;
     console.log(`STORE.currentAnswer: ${STORE.currentAnswer}`);
+    
   });
 }
 
@@ -211,7 +225,12 @@ function handleAnswerSubmission(){
     STORE.userAnswers.push({questionNumber: STORE.currentQuestion, userAnswer: STORE.currentAnswer });
     console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
     // Flip result to opposite to show or not show results after each question
+    console.log(`handleAnswerSubmission(): Current STORE.showQuestionResult: ${STORE.showQuestionResult}`);
     STORE.showQuestionResult = !STORE.showQuestionResult;
+    console.log(`handleAnswerSubmission(): Changed STORE.showQuestionResult: ${STORE.showQuestionResult}`);
+    STORE.currentQuestion += 1;
+    console.log(`STORE.currentQuestion itterated by 1 and is now: ${STORE.currentQuestion}`);
+    handleQuestionView();
   });
 }
 
