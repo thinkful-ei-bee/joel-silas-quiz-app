@@ -172,6 +172,10 @@ function newResultPageTemplate() {
   STORE.currentAnswer = '';
   let templateCorrectAnswer = QUESTIONS[STORE.currentQuestion - 1].answer.substring(QUESTIONS[STORE.currentQuestion-1].answer.length - 1, QUESTIONS[STORE.currentQuestion-1].answer.length);
   let templateDisplayAnswer = QUESTIONS[STORE.currentQuestion - 1].answers[templateCorrectAnswer];
+
+  let temmplateUserAnswer = STORE.userAnswers[STORE.currentQuestion - 1].userAnswer.substring(STORE.userAnswers[STORE.currentQuestion - 1].userAnswer.length - 1,STORE.userAnswers[STORE.currentQuestion - 1].userAnswer.length);
+  let templateUserDisplay = QUESTIONS[STORE.currentQuestion - 1].answers[temmplateUserAnswer];
+
   return `
   <div class="mb-1 bg-primary d-inline-block"></div>
   
@@ -191,7 +195,7 @@ function newResultPageTemplate() {
           <div class="form-group">
             <div class="list-group">
               <ul class="list-inline">
-                <li>You answered: ${QUESTIONS[STORE.currentQuestion-1].answers[templateCorrectAnswer]}</li>
+                <li>You answered: ${templateUserDisplay}</li>
                 <li>Correct answer: ${templateDisplayAnswer}</li>
               </ul>
             </div>
