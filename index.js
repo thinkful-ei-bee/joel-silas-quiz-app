@@ -309,19 +309,6 @@ function render(){ // should only read from store
 
 }
 
-function helperForQuestionView(){ //follow same rules as render
-  console.log(`handleQuestionView(): actual STORE.showQuestionResult: ${STORE.showQuestionResult}`);
-  // if showQuestionResult is true display question/answer result
-  if(STORE.showQuestionResult === true) {
-    console.log(`handleQuestionView(): STORE.showQuestionResult is true, render result view`);
-    render(newResultPageTemplate());
-
-  } else {
-    console.log(`handleQuestionView(): STORE.showQuestionResult is false, render result view`);
-    render(newQuestionTemplate());
-  }
-}
-
 //should only write from STORE not right read
 function handleToggleStart(){
   $('main').on('click', '#js-quiz-starter', function(event){
