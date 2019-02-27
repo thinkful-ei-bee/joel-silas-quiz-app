@@ -248,7 +248,7 @@ function newFinalResultPageTemplate() {
             <div class="list-group">
               <ul class="list-inline">
                 <li></li>
-                <li>Your score ${STORE.score} of a possible${QUESTIONS.length}</li>
+                <li>Your score ${STORE.score} of a possible ${QUESTIONS.length}</li>
               </ul>
             </div>
           </div>
