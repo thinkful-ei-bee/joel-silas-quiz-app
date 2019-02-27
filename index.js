@@ -246,9 +246,9 @@ function newFinalResultPageTemplate() {
 }
 
 function getScore() {
-  console.log(`STORE.userAnswers[index].userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer} QUESTIONS[STORE.currentQuestion].answer: ${QUESTIONS[STORE.currentQuestion].answer}`)
+  console.log(`STORE.userAnswers[index].userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer} QUESTIONS[STORE.currentQuestion].answer: ${QUESTIONS[STORE.currentQuestion].answer}`);
 
-  if(STORE.userAnswers[0].userAnswer === QUESTIONS[0].answer) {
+  if(STORE.userAnswers[STORE.currentQuestion].userAnswer === QUESTIONS[STORE.currentQuestion].answer) {
 
     STORE.score++;
     return;
