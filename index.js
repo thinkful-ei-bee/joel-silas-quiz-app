@@ -282,12 +282,17 @@ function render(){ // should only read from store
   if(STORE.currentView === 'quiz' && STORE.currentAnswer) {
     $('.list-group-item').removeClass('active');
     $(`#${STORE.currentAnswer}`).addClass('active');
+    console.log('trying something');
     return;
   }
 
   if(STORE.currentView === 'quiz' && STORE.currentAnswer === ''){
     $('.container').html(newQuestionTemplate());
     return;
+  }
+
+  if(STORE.currentView === 'result') {
+    $('.container').html(newResultPageTemplate());
   }
 
 }
@@ -332,12 +337,11 @@ function handleAnswerSubmission(){
     STORE.userAnswers.push({questionNumber: STORE.currentQuestion, userAnswer: STORE.currentAnswer });
     console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
     // Flip result to opposite to show or not show results after each question
-    console.log(`handleAnswerSubmission(): Current STORE.showQuestionResult: ${STORE.showQuestionResult}`);
-    STORE.showQuestionResult = !STORE.showQuestionResult;
-    console.log(`handleAnswerSubmission(): Changed STORE.showQuestionResult: ${STORE.showQuestionResult}`);
+    STORE.currentView = 'result';
     STORE.currentQuestion += 1;
     console.log(`STORE.currentQuestion itterated by 1 and is now: ${STORE.currentQuestion}`);
-    handleQuestionView();
+    //helperForQuestionView();
+    render();
   });
 }
 
