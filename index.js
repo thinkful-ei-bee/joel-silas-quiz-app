@@ -5,6 +5,7 @@ const STORE = {
   currentAnswer: '',
   userAnswers: [],
   currentView: 'start',
+  showQuestionResult: false;
 };
 
 // https://www.usefultrivia.com/music_trivia/
@@ -205,16 +206,12 @@ function handleAnswerSelection(){
   });
 }
 
-function logArray(array){
-  for (let i = 0; i < array.length; i++) {
-    console.log(array[i]);
-  }
-}
-
 function handleAnswerSubmission(){
   $('main').on('click', '.js-submit-button', (event) => {
     STORE.userAnswers.push({questionNumber: STORE.currentQuestion, userAnswer: STORE.currentAnswer });
     console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
+    // Flip result to opposite to show or not show results after each question
+    STORE.showQuestionResult = !STORE.showQuestionResult;
   });
 }
 
