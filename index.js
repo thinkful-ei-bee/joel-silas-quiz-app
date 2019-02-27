@@ -215,7 +215,6 @@ function getScore() {
   return 'Correct Answers: 0 of 5';
 }
 
-// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function randomizeArray(array) {
   let currentIndex = array.length, temporaryValue, randomIndex;
 
