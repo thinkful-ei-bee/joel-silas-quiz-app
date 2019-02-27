@@ -199,7 +199,7 @@ function newResultPageTemplate() {
           <div class="form-group">
             <div class="list-group">
               <ul class="list-inline">
-                <li>${STORE.currentQuestion + 1} of ${QUESTIONS.length}</li>
+                <li>${STORE.currentQuestion} of ${QUESTIONS.length}</li>
                 <li>${getScore()}</li>
               </ul>
             </div>
@@ -337,11 +337,11 @@ function handleAnswerSubmission(){
     STORE.userAnswers.push({questionNumber: STORE.currentQuestion, userAnswer: STORE.currentAnswer });
     console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
     // Flip result to opposite to show or not show results after each question
-    STORE.currentView = 'result';
     if(STORE.currentView === 'quiz'){
-      STORE.currentQuestion += 1;
+      STORE.currentQuestion++;
       console.log(`STORE.currentQuestion itterated by 1 and is now: ${STORE.currentQuestion}`);
     }
+    STORE.currentView = 'result';
     //helperForQuestionView();
     render();
   });
