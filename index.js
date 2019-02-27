@@ -191,7 +191,7 @@ function newResultPageTemplate() {
           <div class="form-group">
             <div class="list-group">
               <ul class="list-inline">
-                <li>You answered: {STORE.userAnswers[STORE.currentQuestion].userAnswer}</li>
+                <li>You answered: ${QUESTIONS[STORE.currentQuestion-1].answers[templateCorrectAnswer]}</li>
                 <li>Correct answer: ${templateDisplayAnswer}</li>
               </ul>
             </div>
@@ -341,13 +341,14 @@ function handleAnswerSelection(){
 
 function handleAnswerSubmission() {
   $('main').on('click', '.js-submit-button', (event) => {
-    STORE.userAnswers.push({
-      questionNumber: STORE.currentQuestion, 
-      userAnswer: STORE.currentAnswer,
-    });
-    console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
+    
+    //console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
   
     if(STORE.currentView === 'quiz') {
+      STORE.userAnswers.push({
+        questionNumber: STORE.currentQuestion, 
+        userAnswer: STORE.currentAnswer,
+      });
       getScore();
       console.log('Change view from quiz to result');
       STORE.currentView = 'result';
