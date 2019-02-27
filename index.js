@@ -81,7 +81,40 @@ Display the results.
 Optionally restart the game
 */
 
-function newQuestionTemplate(){
+function newStartPageTemplate() {
+  <div class="mb-1 bg-primary d-inline-block"></div>
+    return `<div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="card-body">
+            <p class="card-text" id="main-title-subtext">
+            <!-- Placeholder text -->
+            </p>
+            <h4 class="card-title text-center">Shall We Play A Game?</h4>
+            
+            <form>
+              <div class="form-group">
+                
+              </div>
+
+              <div class="form-row text-center">
+                <div class="col-12">
+                  <button type="submit" id="js-quiz-starter" class="btn btn-primary">Let's play!</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+    `
+}
+
+function newQuestionTemplate() {
   return `<div class="mb-1 bg-primary d-inline-block"></div>
     
     <div class="row">
@@ -99,10 +132,10 @@ function newQuestionTemplate(){
             <div class="form-group">
               <!-- https://getbootstrap.com/docs/4.3/components/list-group/ -->
               <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[0]}</a>
-                <a href="#" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[1]}</a>
-                <a href="#" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[2]}</a>
-                <a href="#" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[3]}</a>
+                <a href="#" id="answer-0" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[0]}</a>
+                <a href="#" id="answer-1" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[1]}</a>
+                <a href="#" id="answer-2" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[2]}</a>
+                <a href="#" id="answer-3" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[3]}</a>
               </dib>
             </div>
     
@@ -133,7 +166,7 @@ function newQuestionTemplate(){
     </div>`;
 }
 
-function newResultPageTemplate(){
+function newResultPageTemplate() {
   return `
   <div class="mb-1 bg-primary d-inline-block"></div>
   
@@ -190,7 +223,7 @@ function newResultPageTemplate(){
   </div>`;
 }
 
-function newFinalResultPageTemplate(){
+function newFinalResultPageTemplate() {
   return `
    <div class="row">
       <div class="col-4">
@@ -240,39 +273,52 @@ function randomizeQuestionAnswers(array){
   });
 }
 
-function render(template){
-  $('.container').html(template);
+function render(template){ // should only read from store
+  if(STORE.currentView === 'start'){
+    $('.container').html(newStartPageTemplate());
+    return;
+  }
+
+  if(STORE.currentView === 'quiz' && STORE.currentAnswer) {
+    $('.list-group-item').removeClass('active');
+    $(`#${STORE.currentAnswer}`).addClass('active');
+    return;
+  }
+
 }
 
-function handleQuestionView(){
+function helperForQuestionView(){ //follow same rules as render
   console.log(`handleQuestionView(): actual STORE.showQuestionResult: ${STORE.showQuestionResult}`);
   // if showQuestionResult is true display question/answer result
   if(STORE.showQuestionResult === true) {
     console.log(`handleQuestionView(): STORE.showQuestionResult is true, render result view`);
     render(newResultPageTemplate());
+
   } else {
     console.log(`handleQuestionView(): STORE.showQuestionResult is false, render result view`);
     render(newQuestionTemplate());
   }
 }
 
+//should only write from STORE not right read
 function handleToggleStart(){
   $('#js-quiz-starter').click(function(){
     console.log('Start Quiz Button Pushed');
     // we are passing this locally when it is globally available, thoughts?
+    STORE.currentView = 'quiz';
     render(newQuestionTemplate());
+    
   });
 }
 
 function handleAnswerSelection(){
+  // you can not directly tell DOM, only STORE
+  // Change state of selections then call render
   $('main').on('click', '.list-group-item', (event) => {
-    const targetAnswer = $(event.currentTarget);
-    const otherAnswers = $('.list-group-item').not(targetAnswer);
-    otherAnswers.removeClass('active')
-    targetAnswer.addClass('active'); // This is your rel value
-    STORE.currentAnswer = targetAnswer[0].innerHTML;
-    console.log(`STORE.currentAnswer: ${STORE.currentAnswer}`);
     
+    STORE.currentAnswer = $(event.target).attr('id');
+    console.log(`STORE.currentAnswer: ${STORE.currentAnswer}`);
+    render();
   });
 }
 
@@ -295,6 +341,7 @@ function main(){
   randomizeArray(QUESTIONS);
   // Randomize QUESTIONS answers at start
   randomizeQuestionAnswers(QUESTIONS);
+  render();
   handleToggleStart();
   handleAnswerSelection();
   handleAnswerSubmission();
