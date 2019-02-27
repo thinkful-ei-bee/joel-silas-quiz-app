@@ -179,7 +179,7 @@ function newResultPageTemplate() {
         <p class="card-text" id="main-title-subtext">
         <!-- Placeholder text -->
         </p>
-        <h4 class="card-title text-center">${QUESTIONS[STORE.currentQuestion].question}</h4>
+        <h4 class="card-title text-center">${QUESTIONS[(STORE.currentQuestion)-1].question}</h4>
         
         <form>
           <div class="form-group">
@@ -191,7 +191,7 @@ function newResultPageTemplate() {
             <div class="list-group">
               <ul class="list-inline">
                 <li>You answered: {STORE.userAnswers[STORE.currentQuestion].userAnswer}</li>
-                <li>Correct answer: ${QUESTIONS[STORE.currentQuestion].answer}</li>
+                <li>Correct answer: ${QUESTIONS[STORE.currentQuestion-1].answer}</li>
               </ul>
             </div>
           </div>
@@ -349,9 +349,9 @@ function handleAnswerSubmission(){
 
 function main(){
   // Randomize QUESTIONS at start
-  randomizeArray(QUESTIONS);
+  //randomizeArray(QUESTIONS);
   // Randomize QUESTIONS answers at start
-  randomizeQuestionAnswers(QUESTIONS);
+  //randomizeQuestionAnswers(QUESTIONS);
   render();
   handleToggleStart();
   handleAnswerSelection();
