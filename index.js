@@ -157,13 +157,24 @@ function getScore() {
   return 'Correct Answers: 0 of 5';
 }
 
-function randomizeArray(array){
-  let returnArray =  array.forEach((val, key) => {
-    let randomIndex = Math.ceil(Math.random()*(key + 1));
-    array[key] = array[randomIndex];
-    array[randomIndex] = val;
-  });
-  return returnArray;
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function randomizeArray(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 }
 
 function render(template){
@@ -179,17 +190,15 @@ function handleToggleStart(){
 
 function handleAnswerSelection(){
   $('main').on('click', '.list-group-item', (event) => {
-    const target = $(event.currentTarget);
-    const otherLinks = $('.list-group-item').not(target);
-    otherLinks.removeClass('active')
-    target.addClass('active'); // This is your rel value
-    STORE.currentAnswer = target[0].innerHTML;
-    console.log(STORE.currentAnswer);
+    const targetAnswer = $(event.currentTarget);
+    const otherAnswers = $('.list-group-item').not(targetAnswer);
+    otherAnswers.removeClass('active')
+    targetAnswer.addClass('active'); // This is your rel value
+    STORE.currentAnswer = targetAnswer[0].innerHTML;
+    console.log(`STORE.currentAnswer: ${STORE.currentAnswer}`);
   });
 }
-function test(){
-  
-}
+
 function handleAnswerSubmission(){
   $('main').on('click', '.js-submit-button', (event) => {
     console.log('you submitted something');
@@ -198,6 +207,8 @@ function handleAnswerSubmission(){
 }
 
 function main(){
+  // Randomize questions at start
+  randomizeArray(QUESTIONS);
   handleToggleStart();
   handleAnswerSelection();
   handleAnswerSubmission();
