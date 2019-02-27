@@ -13,7 +13,7 @@ const STORE = {
 
 const QUESTIONS = [
   {question: 'Who was awarded the very first gold record?', 
-    answer:'Perry Como', 
+    answer:'answer-3', 
     answers: [
       'Elvis Presley', 
       'Nat King Cole',
@@ -249,7 +249,7 @@ function newFinalResultPageTemplate() {
 function getScore() {
   console.log(`STORE.userAnswers[index].userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer} QUESTIONS[STORE.currentQuestion].answer: ${QUESTIONS[STORE.currentQuestion].answer}`)
 
-  if(STORE.userAnswers[STORE.currentQuestion].userAnswer === QUESTIONS[STORE.currentQuestion].answer) {
+  if(STORE.userAnswers[0].userAnswer === QUESTIONS[0].answer) {
 
     STORE.score++;
     return;
@@ -322,7 +322,6 @@ function helperForQuestionView(){ //follow same rules as render
 //should only write from STORE not right read
 function handleToggleStart(){
   $('#js-quiz-starter').click(function(){
-    console.log('Start Quiz Button Pushed');
     // we are passing this locally when it is globally available, thoughts?
     STORE.currentView = 'quiz';
     render();
@@ -343,7 +342,10 @@ function handleAnswerSelection(){
 
 function handleAnswerSubmission() {
   $('main').on('click', '.js-submit-button', (event) => {
-    STORE.userAnswers.push({questionNumber: STORE.currentQuestion, userAnswer: STORE.currentAnswer });
+    STORE.userAnswers.push({
+      questionNumber: STORE.currentQuestion, 
+      userAnswer: STORE.currentAnswer,
+    });
     console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
   
     if(STORE.currentView === 'quiz') {
