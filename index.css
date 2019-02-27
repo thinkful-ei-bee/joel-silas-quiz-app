@@ -29,7 +29,7 @@
 }
 
 .active a {
-  color: #363d42;
-  background-color: #90b5cc;
-  border-color: #778c99;
+  color: #363d42 !important;
+  background-color: #90b5cc !important;
+  border-color: #778c99 !important;
 }

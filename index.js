@@ -98,7 +98,7 @@ function newQuestionTemplate(array){
             <div class="form-group">
               <!-- https://getbootstrap.com/docs/4.3/components/list-group/ -->
               <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active">${array[0].answers[0]}</a>
+                <a href="#" class="list-group-item list-group-item-action">${array[0].answers[0]}</a>
                 <a href="#" class="list-group-item list-group-item-action">${array[0].answers[1]}</a>
                 <a href="#" class="list-group-item list-group-item-action">${array[0].answers[2]}</a>
                 <a href="#" class="list-group-item list-group-item-action">${array[0].answers[3]}</a>
