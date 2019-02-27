@@ -1,6 +1,7 @@
 'use strict';
 
 const STORE = {
+  score: 0,
   currentQuestion: 0,
   currentAnswer: '',
   userAnswers: [],
@@ -143,7 +144,7 @@ function newQuestionTemplate() {
               <div class="list-group">
                 <ul class="list-inline">
                   <li>${STORE.currentQuestion + 1} of ${QUESTIONS.length}</li>
-                  <li>${getScore()}</li>
+                  <li>You have ${STORE.score} of ${QUESTIONS.length} correct</li>
                 </ul>
               </div>
             </div>
@@ -201,7 +202,7 @@ function newResultPageTemplate() {
             <div class="list-group">
               <ul class="list-inline">
                 <li>${STORE.currentQuestion} of ${QUESTIONS.length}</li>
-                <li>${getScore()}</li>
+                <li>You have ${STORE.score} of ${QUESTIONS.length} correct</li>
               </ul>
             </div>
           </div>
@@ -246,7 +247,14 @@ function newFinalResultPageTemplate() {
 }
 
 function getScore() {
-  return 'Correct Answers: 0 of 5';
+  console.log(`STORE.userAnswers[index].userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer} QUESTIONS[STORE.currentQuestion].answer: ${QUESTIONS[STORE.currentQuestion].answer}`)
+
+  if(STORE.userAnswers[STORE.currentQuestion].userAnswer === QUESTIONS[STORE.currentQuestion].answer) {
+
+    STORE.score++;
+    return;
+  }
+  return;
 }
 
 function randomizeArray(array) {
@@ -333,27 +341,13 @@ function handleAnswerSelection(){
   });
 }
 
-// function handleAnswerSubmission(){
-//   $('main').on('click', '.js-submit-button', (event) => {
-//     STORE.userAnswers.push({questionNumber: STORE.currentQuestion, userAnswer: STORE.currentAnswer });
-//     console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
-//     // Flip result to opposite to show or not show results after each question
-//     if(STORE.currentView === 'quiz'){
-//       STORE.currentQuestion++;
-//       console.log(`STORE.currentQuestion itterated by 1 and is now: ${STORE.currentQuestion}`);
-//     }
-//     STORE.currentView = 'result';
-//     //helperForQuestionView();
-//     render();
-//   });
-// }
-
 function handleAnswerSubmission() {
   $('main').on('click', '.js-submit-button', (event) => {
     STORE.userAnswers.push({questionNumber: STORE.currentQuestion, userAnswer: STORE.currentAnswer });
     console.log(`Submit button pressed. STORE.userAnswers updated: questionNumber: ${STORE.userAnswers[STORE.currentQuestion].questionNumber} userAnswer: ${STORE.userAnswers[STORE.currentQuestion].userAnswer}`);
   
     if(STORE.currentView === 'quiz') {
+      getScore();
       console.log('Change view from quiz to result');
       STORE.currentView = 'result';
       STORE.currentQuestion++;
