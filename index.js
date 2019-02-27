@@ -273,7 +273,7 @@ function randomizeQuestionAnswers(array){
   });
 }
 
-function render(template){ // should only read from store
+function render(){ // should only read from store
   if(STORE.currentView === 'start'){
     $('.container').html(newStartPageTemplate());
     return;
@@ -282,6 +282,11 @@ function render(template){ // should only read from store
   if(STORE.currentView === 'quiz' && STORE.currentAnswer) {
     $('.list-group-item').removeClass('active');
     $(`#${STORE.currentAnswer}`).addClass('active');
+    return;
+  }
+
+  if(STORE.currentView === 'quiz' && STORE.currentAnswer === ''){
+    $('.container').html(newQuestionTemplate());
     return;
   }
 
@@ -306,7 +311,7 @@ function handleToggleStart(){
     console.log('Start Quiz Button Pushed');
     // we are passing this locally when it is globally available, thoughts?
     STORE.currentView = 'quiz';
-    render(newQuestionTemplate());
+    render();
     
   });
 }
