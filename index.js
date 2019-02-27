@@ -11,6 +11,19 @@ const STORE = {
 
 // https://www.usefultrivia.com/music_trivia/
 
+/*
+Render the start page.
+Go to the first question page,
+which displays question 1.
+Record user answer, including index of question,
+and whether the user was correct / incorrect.
+Reload the question page with the next question.
+Repeat this for all 5 questions.
+Go to the result page.
+Display the results.
+Optionally restart the game
+*/
+
 const QUESTIONS = [
   {question: 'Who was awarded the very first gold record?', 
     answer:'answer-3', 
@@ -24,7 +37,7 @@ const QUESTIONS = [
     answerTrivia: 'Although there were earlier publicity stunts involving records sprayed with gold lacquer, the actual award recognized today as a Gold Record was first awarded to Perry Como in 1958 for his recording of "Catch a Falling Star".',
   },
   {question: 'What pop singer is known as "The Material Girl"?', 
-    answer: 'Madonna',
+    answer: 'answer-3',
     answers: [
       'Britney Spears', 
       'Christina Aguilera',
@@ -35,7 +48,7 @@ const QUESTIONS = [
     anwerTrivia: 'Madonna became known as "The Material Girl" after her hit single of the same name hit the charts in 1984. She hates it, claiming she would never have done the song if she knew the name would stick.',
   },
   {question: 'What Depeche Mode song was inspired by Priscilla Presley\'s book Elvis and Me?', 
-    answer: 'Personal Jesus',
+    answer: 'answer-3',
     answers: [
       'Sweetest Perfection', 
       'Strangelove',
@@ -46,7 +59,7 @@ const QUESTIONS = [
     answerTrivia: '"Personal Jesus" was inspired by Priscilla Presley\'s book Elvis And Me, in which she describes her relationship with Elvis Presley.',
   },
   {question: 'How much pressure do the strings in a grand piano exert on the frame?', 
-    answer: '30 LBS',
+    answer: 'answer-3',
     answers: [
       '300 LBS', 
       '3 Tons',
@@ -57,7 +70,7 @@ const QUESTIONS = [
     answerTrivia: 'Each string has a tension of 160-200 lbs, resulting in a total combined force of up to 30 tons in a concert grand.',
   },
   {question: 'What is the oldest surviving musical instrument?', 
-    answer: 'Flute',
+    answer: 'answer-2',
     answers: [
       'Trumpet', 
       'Drum',
@@ -68,19 +81,6 @@ const QUESTIONS = [
     answerTrivia: 'An ancient bone flute, estimated to be about 43,000-82,000 years old, was found by Dr Ivan Turk, a palaeontologist at the Slovenian Academy of Science at a Neanderthal campsite in Ljubljana, Slovenia, in 1998. The oldest known musical instrument, it is made of an old cavebear femur segment with four holes (two complete and two partial).',
   }
 ];
-
-/*
-Render the start page.
-Go to the first question page,
-which displays question 1.
-Record user answer, including index of question,
-and whether the user was correct / incorrect.
-Reload the question page with the next question.
-Repeat this for all 5 questions.
-Go to the result page.
-Display the results.
-Optionally restart the game
-*/
 
 function newStartPageTemplate() {
   return `<div class="row">
@@ -184,10 +184,6 @@ function newResultPageTemplate() {
         <h4 class="card-title text-center">${QUESTIONS[(STORE.currentQuestion)-1].question}</h4>
         
         <form>
-          <div class="form-group">
-            
-            <div class="answer-result">Placeholer Text: Here's the real answer.</div>
-          </div>
 
           <div class="form-group">
             <div class="list-group">
