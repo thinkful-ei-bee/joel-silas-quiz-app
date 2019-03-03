@@ -196,18 +196,12 @@ function newResultPageTemplate() {
 
         </div>
       </div>
-      </div>
-    </div>
-  </div>`;
+    </div>`;
 }
 
 function newFinalResultPageTemplate() {
-  return `
-  <div class="mb-1 bg-primary d-inline-block"></div>
-  
-  <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
+  return `  <div class="row">
+    <div class="col-5">
       <div class="card">
 
         <div class="card-body">
@@ -228,20 +222,14 @@ function newFinalResultPageTemplate() {
           </div>
   
           <div class="form-row text-center">
-            <div class="col-12">
               <button type="submit" class="btn btn-primary js-start-over-button">Play Again!</button>
-            </div>
           </div>
         </form>
   
         </div>
 
-        </div>
       </div>
-      </div>
-    </div>
-    <div class="col-sm-2"></div>
-  </div>`;
+    </div>`;
 }
 
 function getScore() {
