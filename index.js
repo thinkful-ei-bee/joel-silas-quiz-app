@@ -156,12 +156,8 @@ function newResultPageTemplate() {
   let temmplateUserAnswer = STORE.userAnswers[STORE.currentQuestion - 1].userAnswer.substring(STORE.userAnswers[STORE.currentQuestion - 1].userAnswer.length - 1,STORE.userAnswers[STORE.currentQuestion - 1].userAnswer.length);
   let templateUserDisplay = QUESTIONS[STORE.currentQuestion - 1].answers[temmplateUserAnswer];
 
-  return `
-  <div class="mb-1 bg-primary d-inline-block"></div>
-  
-  <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
+  return `<div class="row">
+    <div class="col-5">
       <div class="card">
 
         <div class="card-body">
@@ -174,9 +170,10 @@ function newResultPageTemplate() {
 
           <div class="form-group">
             <div class="list-group">
-              <ul class="list-inline">
-                <li>You answered: ${templateUserDisplay}</li>
-                <li>Correct answer: ${templateDisplayAnswer}</li>
+              <ul>
+                <li>You answered:<br> ${templateUserDisplay} </li>
+                <li class="list-spacer"></li>
+                <li>Correct answer:<br> ${templateDisplayAnswer}</li>
               </ul>
             </div>
           </div>
@@ -184,17 +181,14 @@ function newResultPageTemplate() {
           <div class="form-group">
               <ul class="list-group">
                 <li>${STORE.currentQuestion} of ${QUESTIONS.length}</li>
-                <li> | </li>
+                <li class="list-spacer"> | </li>
                 <li>You have ${STORE.score} of ${QUESTIONS.length} correct</li>
               </ul>
-            
           </div>
   
           <div class="form-row text-center">
-            <div class="col-12">
               <button type="submit" class="btn btn-primary js-submit-button">Next</button>
               <button type="submit" class="btn btn-primary js-start-over-button">Start Over</button>
-            </div>
           </div>
         </form>
   
@@ -204,7 +198,6 @@ function newResultPageTemplate() {
       </div>
       </div>
     </div>
-    <div class="col-sm-2"></div>
   </div>`;
 }
 
