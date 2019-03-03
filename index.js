@@ -118,17 +118,18 @@ function newQuestionTemplate() {
             <div class="form-group">
               <!-- https://getbootstrap.com/docs/4.3/components/list-group/ -->
               <div class="list-group">
-                <a href="#" id="answer-0" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[0]}</a>
-                <a href="#" id="answer-1" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[1]}</a>
-                <a href="#" id="answer-2" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[2]}</a>
-                <a href="#" id="answer-3" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[3]}</a>
-              </dib>
+                <a href="#" id="answer-0" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[0]}</a><br>
+                <a href="#" id="answer-1" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[1]}</a><br>
+                <a href="#" id="answer-2" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[2]}</a><br>
+                <a href="#" id="answer-3" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[3]}</a><br>
+              </div>
             </div>
     
             <div class="form-group">
               <div class="list-group">
                 <ul class="list-inline">
                   <li>${STORE.currentQuestion + 1} of ${QUESTIONS.length}</li>
+                  <li class='list-spacer'>|</li>
                   <li>You have ${STORE.score} of ${QUESTIONS.length} correct</li>
                 </ul>
               </div>
@@ -181,12 +182,12 @@ function newResultPageTemplate() {
           </div>
   
           <div class="form-group">
-            <div class="list-group">
-              <ul class="list-inline">
+              <ul class="list-group">
                 <li>${STORE.currentQuestion} of ${QUESTIONS.length}</li>
+                <li> | </li>
                 <li>You have ${STORE.score} of ${QUESTIONS.length} correct</li>
               </ul>
-            </div>
+            
           </div>
   
           <div class="form-row text-center">

@@ -63,6 +63,39 @@ main {
   text-align: center;
 }
 
+a:visited {
+  color: #363d42;
+}
+
+.list-group-item {
+  padding: 4px;
+  text-decoration: none;
+}
+
 .active {
   background-color: #90b5cc;
+  color: #363d42;
+  background-color: #90b5cc;
+  border-color: #778c99;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-content: flex-end;
+  padding: 0;
+  margin: 25px 0;
+}
+
+.list-item-left {
+  align-self: flex-start;
+}
+
+.list-item-right {
+  align-self: flex-end;
+}
+
+.list-spacer {
+  padding: 0 20px;
 }
