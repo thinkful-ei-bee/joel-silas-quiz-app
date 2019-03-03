@@ -83,35 +83,31 @@ const QUESTIONS = [
 
 function newStartPageTemplate() {
   return `<div class="row">
-    <div class="mb-1 bg-primary d-inline-block"></div>
-      <div class="col-sm-2"></div>
-      <div class="col-sm-8">
-        <div class="card">
-          <div class="card-body">
-            <p class="card-text" id="main-title-subtext">
-            <!-- Placeholder text -->
-            </p>
-            <h4 class="card-title text-center">Shall We Play A Game?</h4>
+  <div class="col-4">
+    <div class="card">
+
+      <div class="card-body">
+
+        <p class="card-text" id="main-title-subtext">
+        <!-- Placeholder text -->
+        </p>
+        <h4 class="card-title text-center">Shall We Play A Game?</h4>
+        
+        <form>
+          <div class="form-group">
             
-            <form>
-              <div class="form-group">
-                
-              </div>
-
-              <div class="form-row text-center">
-                <div class="col-12">
-                  <button type="submit" id="js-quiz-starter" class="btn btn-primary">Let's play!</button>
-                </div>
-              </div>
-            </form>
-
           </div>
-        </div>
-        </div>
+
+          <div class="form-row text-center">
+            <button type="submit" id="js-quiz-starter" class="btn btn-primary">Let's play!</button>
+          </div>
+        </form>
+
       </div>
-      <div class="col-sm-2"></div>
+
+      </div>
     </div>
-    `;
+  </div>`;
 }
 
 function newQuestionTemplate() {
