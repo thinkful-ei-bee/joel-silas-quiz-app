@@ -83,86 +83,67 @@ const QUESTIONS = [
 
 function newStartPageTemplate() {
   return `<div class="row">
-    <div class="mb-1 bg-primary d-inline-block"></div>
-      <div class="col-sm-2"></div>
-      <div class="col-sm-8">
-        <div class="card">
-          <div class="card-body">
-            <p class="card-text" id="main-title-subtext">
-            <!-- Placeholder text -->
-            </p>
-            <h4 class="card-title text-center">Shall We Play A Game?</h4>
+  <div class="col-4">
+    <div class="card">
+
+      <div class="card-body">
+
+        <h4 class="card-title text-center">Shall We Play A Game?</h4>
+        
+        <form>
+          <div class="form-group">
             
-            <form>
-              <div class="form-group">
-                
-              </div>
-
-              <div class="form-row text-center">
-                <div class="col-12">
-                  <button type="submit" id="js-quiz-starter" class="btn btn-primary">Let's play!</button>
-                </div>
-              </div>
-            </form>
-
           </div>
-        </div>
-        </div>
+
+          <div class="form-row text-center">
+            <button type="submit" id="js-quiz-starter" class="btn btn-primary">Let's play!</button>
+          </div>
+        </form>
+
       </div>
-      <div class="col-sm-2"></div>
+
+      </div>
     </div>
-    `;
+  </div>`;
 }
 
 function newQuestionTemplate() {
-  return `<div class="mb-1 bg-primary d-inline-block"></div>
-    
-    <div class="row">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-8">
+  return `<div class="row">
+      <div class="col-5">
         <div class="card">
 
-          <div class="card-body">
-          <p class="card-text" id="main-title-subtext">
-          <!-- Placeholder text -->
-          </p>
           <h4 class="card-title text-center">${QUESTIONS[STORE.currentQuestion].question}</h4>
           
           <form>
             <div class="form-group">
               <!-- https://getbootstrap.com/docs/4.3/components/list-group/ -->
               <div class="list-group">
-                <a href="#" id="answer-0" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[0]}</a>
-                <a href="#" id="answer-1" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[1]}</a>
-                <a href="#" id="answer-2" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[2]}</a>
-                <a href="#" id="answer-3" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[3]}</a>
-              </dib>
+                <a href="#" id="answer-0" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[0]}</a><br>
+                <a href="#" id="answer-1" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[1]}</a><br>
+                <a href="#" id="answer-2" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[2]}</a><br>
+                <a href="#" id="answer-3" class="list-group-item list-group-item-action">${QUESTIONS[STORE.currentQuestion].answers[3]}</a><br>
+              </div>
             </div>
     
             <div class="form-group">
               <div class="list-group">
                 <ul class="list-inline">
                   <li>${STORE.currentQuestion + 1} of ${QUESTIONS.length}</li>
+                  <li class='list-spacer'>|</li>
                   <li>You have ${STORE.score} of ${QUESTIONS.length} correct</li>
                 </ul>
               </div>
             </div>
     
             <div class="form-row text-center">
-              <div class="col-12">
                 <button type="submit" class="btn btn-primary js-submit-button">Submit</button>
                 <button type="submit" class="btn btn-primary js-start-over-button">Star Over</button>
-              </div>
             </div>
           </form>
     
-          </div>
+        </div>
 
-          </div>
-        </div>
-        </div>
       </div>
-      <div class="col-sm-2"></div>
     </div>`;
 }
 
@@ -175,45 +156,36 @@ function newResultPageTemplate() {
   let temmplateUserAnswer = STORE.userAnswers[STORE.currentQuestion - 1].userAnswer.substring(STORE.userAnswers[STORE.currentQuestion - 1].userAnswer.length - 1,STORE.userAnswers[STORE.currentQuestion - 1].userAnswer.length);
   let templateUserDisplay = QUESTIONS[STORE.currentQuestion - 1].answers[temmplateUserAnswer];
 
-  return `
-  <div class="mb-1 bg-primary d-inline-block"></div>
-  
-  <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
+  return `<div class="row">
+    <div class="col-5">
       <div class="card">
 
         <div class="card-body">
-        <p class="card-text" id="main-title-subtext">
-        <!-- Placeholder text -->
-        </p>
         <h4 class="card-title text-center">${QUESTIONS[(STORE.currentQuestion)-1].question}</h4>
         
         <form>
 
           <div class="form-group">
             <div class="list-group">
-              <ul class="list-inline">
-                <li>You answered: ${templateUserDisplay}</li>
-                <li>Correct answer: ${templateDisplayAnswer}</li>
+              <ul>
+                <li>You answered:<br> ${templateUserDisplay} </li>
+                <li class="list-spacer"></li>
+                <li>Correct answer:<br> ${templateDisplayAnswer}</li>
               </ul>
             </div>
           </div>
   
           <div class="form-group">
-            <div class="list-group">
-              <ul class="list-inline">
+              <ul class="list-group">
                 <li>${STORE.currentQuestion} of ${QUESTIONS.length}</li>
+                <li class="list-spacer"> | </li>
                 <li>You have ${STORE.score} of ${QUESTIONS.length} correct</li>
               </ul>
-            </div>
           </div>
   
           <div class="form-row text-center">
-            <div class="col-12">
               <button type="submit" class="btn btn-primary js-submit-button">Next</button>
               <button type="submit" class="btn btn-primary js-start-over-button">Start Over</button>
-            </div>
           </div>
         </form>
   
@@ -221,25 +193,15 @@ function newResultPageTemplate() {
 
         </div>
       </div>
-      </div>
-    </div>
-    <div class="col-sm-2"></div>
-  </div>`;
+    </div>`;
 }
 
 function newFinalResultPageTemplate() {
-  return `
-  <div class="mb-1 bg-primary d-inline-block"></div>
-  
-  <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
+  return `  <div class="row">
+    <div class="col-5">
       <div class="card">
 
         <div class="card-body">
-        <p class="card-text" id="main-title-subtext">
-        <!-- Placeholder text -->
-        </p>
         <h4 class="card-title text-center">Score</h4>
         
         <form>
@@ -254,20 +216,14 @@ function newFinalResultPageTemplate() {
           </div>
   
           <div class="form-row text-center">
-            <div class="col-12">
               <button type="submit" class="btn btn-primary js-start-over-button">Play Again!</button>
-            </div>
           </div>
         </form>
   
         </div>
 
-        </div>
       </div>
-      </div>
-    </div>
-    <div class="col-sm-2"></div>
-  </div>`;
+    </div>`;
 }
 
 function getScore() {
