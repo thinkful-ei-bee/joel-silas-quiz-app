@@ -37,8 +37,16 @@ main {
   background-color:pink;
 }
 
+.col-3 {
+  width: 33vw;
+}
+
 .col-4 {
   width: 25vw;
+}
+
+.col-5 {
+  width: 50vw;
 }
 
 .col-12 {
@@ -53,4 +61,8 @@ main {
 
 .text-center {
   text-align: center;
+}
+
+.active {
+  background-color: #90b5cc;
 }

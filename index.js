@@ -88,9 +88,6 @@ function newStartPageTemplate() {
 
       <div class="card-body">
 
-        <p class="card-text" id="main-title-subtext">
-        <!-- Placeholder text -->
-        </p>
         <h4 class="card-title text-center">Shall We Play A Game?</h4>
         
         <form>
@@ -111,17 +108,10 @@ function newStartPageTemplate() {
 }
 
 function newQuestionTemplate() {
-  return `<div class="mb-1 bg-primary d-inline-block"></div>
-    
-    <div class="row">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-8">
+  return `<div class="row">
+      <div class="col-5">
         <div class="card">
 
-          <div class="card-body">
-          <p class="card-text" id="main-title-subtext">
-          <!-- Placeholder text -->
-          </p>
           <h4 class="card-title text-center">${QUESTIONS[STORE.currentQuestion].question}</h4>
           
           <form>
@@ -145,20 +135,14 @@ function newQuestionTemplate() {
             </div>
     
             <div class="form-row text-center">
-              <div class="col-12">
                 <button type="submit" class="btn btn-primary js-submit-button">Submit</button>
                 <button type="submit" class="btn btn-primary js-start-over-button">Star Over</button>
-              </div>
             </div>
           </form>
     
-          </div>
+        </div>
 
-          </div>
-        </div>
-        </div>
       </div>
-      <div class="col-sm-2"></div>
     </div>`;
 }
 
