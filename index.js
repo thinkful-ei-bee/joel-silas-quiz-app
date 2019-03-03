@@ -161,9 +161,6 @@ function newResultPageTemplate() {
       <div class="card">
 
         <div class="card-body">
-        <p class="card-text" id="main-title-subtext">
-        <!-- Placeholder text -->
-        </p>
         <h4 class="card-title text-center">${QUESTIONS[(STORE.currentQuestion)-1].question}</h4>
         
         <form>
@@ -205,9 +202,6 @@ function newFinalResultPageTemplate() {
       <div class="card">
 
         <div class="card-body">
-        <p class="card-text" id="main-title-subtext">
-        <!-- Placeholder text -->
-        </p>
         <h4 class="card-title text-center">Score</h4>
         
         <form>
